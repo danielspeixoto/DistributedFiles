@@ -1,0 +1,7 @@
+.idea
+out
+server/out
+clien/out
+client/.gradle
+server/.gradle
+.gradle
