@@ -5,3 +5,4 @@ clien/out
 client/.gradle
 server/.gradle
 .gradle
+.DS_Store
