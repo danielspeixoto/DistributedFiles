@@ -12,6 +12,12 @@ public class SocketCommunication {
 
     private static final String OPEN = "ropen";
     private static final String READ = "rread";
+    private static final String EOF = "reof";
+    private static final String SEEK = "rseek";
+    private static final String WRITE = "rwrite";
+    private static final String GETPOS = "rgetpos";
+    private static final String CLOSE = "rclose";
+    private static final String REMOVE = "rremove";
 
     private Manager manager;
     private Gson gson = new Gson();
@@ -84,7 +90,10 @@ public class SocketCommunication {
                                 }
                             }
                     );
+                    break;
+                case EOF:
 
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
