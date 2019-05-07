@@ -44,7 +44,7 @@ public class SocketCom implements ICommunication {
         if (response.containsKey("rid")) {
             return Long.valueOf(response.get("rid"));
         }
-        return 0;
+        return 1;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SocketCom implements ICommunication {
             }
             return text.length();
         }
-        return 0;
+        return 1;
     }
 
     @Override

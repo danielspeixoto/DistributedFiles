@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4e558f9-5735-44ed-ab21-1fae83167cb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/data/SocketCom.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/data/SocketCom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/domain/ICommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/domain/ICommunication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/domain/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/domain/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../client/src/main/java/presentation/Terminal.java" beforeDir="false" afterPath="$PROJECT_DIR$/../client/src/main/java/presentation/Terminal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/data/FileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/data/FileManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/domain/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/domain/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/presentation/SocketCommunication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/presentation/SocketCommunication.java" afterDir="false" />
-    </list>
+    <list default="true" id="b4e558f9-5735-44ed-ab21-1fae83167cb3" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,8 +14,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/presentation/SocketCommunication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+            <state relative-caret-position="-528">
+              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -43,8 +23,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/domain/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="55" column="52" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
+            <state relative-caret-position="-118">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -54,6 +34,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="34">
               <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/data/FileManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -76,6 +65,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/domain/Manager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/presentation/SocketCommunication.java" />
       </list>
     </option>
   </component>
@@ -115,6 +105,12 @@
               <item name="server" type="b2602c69:ProjectViewProjectNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="domain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -131,6 +127,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -158,12 +155,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1557173031962</updated>
-      <workItem from="1557173036792" duration="990000" />
+      <workItem from="1557173036792" duration="1846000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="990000" />
+    <option name="totallyTimeSpent" value="1846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -210,6 +207,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/data/FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domain/ILongCallback.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -219,15 +223,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/domain/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="55" column="52" selection-start-line="55" selection-start-column="52" selection-end-line="55" selection-end-column="52" />
+        <state relative-caret-position="-118">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/presentation/SocketCommunication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="62" column="50" lean-forward="true" selection-start-line="62" selection-start-column="50" selection-end-line="62" selection-end-column="50" />
+        <state relative-caret-position="-528">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
