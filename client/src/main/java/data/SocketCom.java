@@ -106,8 +106,8 @@ public class SocketCom implements ICommunication {
         map.put("rid", String.valueOf(rid));
         map.put("pos", String.valueOf(pos));
         Map<String, String> result = request(map);
-        if (result.containsKey("gpos")) {
-            return Long.valueOf(result.get("gpos"));
+        if (result.containsKey("getpos")) {
+            return Long.valueOf(result.get("getpos"));
         }
         return 1;
     }
@@ -127,6 +127,16 @@ public class SocketCom implements ICommunication {
     }
 
     public long rwrite(StringBuffer buffer, int sizeBuf, int count, long rid) {
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "rwrite");
+        map.put("rid", String.valueOf(rid));
+        map.put("buffer", buffer.toString());
+        map.put("size", String.valueOf(sizeBuf));
+        map.put("count", String.valueOf(count));
+        Map<String, String> result = request(map);
+        if (result.containsKey("total")) {
+            return Long.valueOf(result.get("total"));
+        }
         return 1;
     }
 

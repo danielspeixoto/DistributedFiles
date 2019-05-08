@@ -55,43 +55,61 @@ public class SocketCommunication {
 
             Map<String, String> m =
                     (Map<String, String>) gson.fromJson(input, Map.class);
+            HashMap<String, String> response = new HashMap<>();
 
             switch (m.get("operation")) {
                 case OPEN:
                     Long num = manager.open(
                             m.get("filename"),
                             m.get("mode"));
-                    HashMap<String, String> response = new HashMap<>();
                     response.put("rid", String.valueOf(num));
-                    try {
-                        System.out.println("rid: " + num);
-                        writer.write(gson.toJson(response) + "\n");
-                        writer.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
                     break;
                 case READ:
                     String text = manager.read(
                             Long.valueOf(m.get("rid")),
                             Integer.valueOf(m.get("count"))
                     );
-                    HashMap<String, String> r = new HashMap<>();
-                    r.put("text", String.valueOf(text));
-                    try {
-                        System.out.println("response: " + r);
-                        writer.write(gson.toJson(r) + "\n");
-                        writer.flush();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    response.put("text", String.valueOf(text));
                     break;
                 case EOF:
+                    num = manager.close(Long.valueOf(m.get("rid")));
+                    response.put("final", String.valueOf(num));
+                    break;
+                case WRITE:
+                    num = manager.write(Long.valueOf(m.get("rid")), m.get("buffer"));
+                    response.put("total", String.valueOf(num));
+                    break;
+                case GETPOS:
+                    num = manager.getpos(Long.valueOf(m.get("rid")));
+                    response.put("getpos", String.valueOf(num));
+                    break;
+                case SEEK:
 
                     break;
+                case CLOSE:
+
+                    break;
+                case REMOVE:
+
+                    break;
+                default:
+                    break;
             }
+            response(response, writer);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public void response(HashMap<String, String> map, BufferedWriter writer){
+        try {
+            System.out.println("response: " + map);
+            writer.write(gson.toJson(map) + "\n");
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+

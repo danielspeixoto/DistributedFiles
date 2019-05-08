@@ -56,6 +56,9 @@ public class Terminal {
                 case REMOVE:
 
                     break;
+
+                default:
+                    break;
             }
         }
     }

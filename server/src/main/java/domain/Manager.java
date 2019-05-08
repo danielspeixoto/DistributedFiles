@@ -48,18 +48,18 @@ public class Manager {
         String result = "";
         if (permissions.containsKey(rid)) {
             Permission permission = permissions.get(rid);
-            result = fileManager.read(permission.getFilename(), count);
+            result = fileManager.read(permission.getFilename(), permission.getPosition(), count);
+            permission.setPosition(permission.getPosition() + result.length());
         }
         return result;
     }
 
-    public long eof(long rid, ILongCallback callback){
-        long result = 1;
+    public long eof(long rid){
         if (permissions.containsKey((rid))) {
             Permission permission = permissions.get(rid);
-            result = fileManager.eof(permission.getFilename());
+            return fileManager.eof(permission.getFilename(), permission.getPosition()) ? 1 : 0;
         }
-        return result;
+        return 0;
     }
 
     public long remove(long rid) {
@@ -67,6 +67,48 @@ public class Manager {
         if (permissions.containsKey((rid))) {
             Permission permission = permissions.get(rid);
             result = fileManager.remove(permission.getFilename());
+            permissions.remove(rid);
+        }
+        return result;
+    }
+
+    public long write(long rid, String text){
+        long result=0;
+        if(permissions.containsKey(rid)){
+            Permission permission = permissions.get(rid);
+            return fileManager.write(text, permission.getFilename(), permission.getMode(), permission.getPosition());
+        }
+        return result;
+    }
+
+    public long seek(long rid, long offset, String origin){
+        long result=1;
+        if(permissions.containsKey(rid)){
+            Permission permission = permissions.get(rid);
+            result = fileManager.seek(permission.getFilename(), permission.getPosition(), offset, origin);
+            if(result != -1) {
+                permission.setPosition(result);
+                return 0;
+            }
+        }
+        return result;
+    }
+
+    public long close(long rid){
+        long result=0;
+        if(permissions.containsKey(rid)){
+            Permission permission = permissions.get(rid);
+            result = fileManager.remove(permission.getFilename());
+            permissions.remove(rid);
+        }
+        return result;
+    }
+
+    public long getpos(long rid){
+        long result=0;
+        if(permissions.containsKey(rid)){
+            Permission permission = permissions.get(rid);
+            result = fileManager.getpos(permission.getPosition());
         }
         return result;
     }
