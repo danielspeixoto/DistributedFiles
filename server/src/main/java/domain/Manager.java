@@ -25,13 +25,13 @@ public class Manager {
             READ, WRITE, APPEND, READ_PLUS, WRITE_CREATE, APPEND_CREATE
     );
 
-    public synchronized void open(String filename, String mode, ILongCallback callback) {
+    public synchronized Long open(String filename, String mode) {
         long result = 0;
         if(filename != null && mode != null) {
             ArrayList<Permission> usages = filenameUsage(filename);
             if (!MODES.contains(mode)) {
                 // Invalid mode
-                callback.run(0);
+               return 0L;
             }
             if (usages.size() == 0) {
                 // Nobody is using this file
@@ -41,32 +41,39 @@ public class Manager {
                 result = createPermission(filename, mode);
             }
         }
-        callback.run(result);
+        return result;
     }
 
-    public void read(long rid, int count, IStringCallback callback) {
+    public String read(long rid, int count) {
         String result = "";
         if (permissions.containsKey(rid)) {
             Permission permission = permissions.get(rid);
             result = fileManager.read(permission.getFilename(), count);
         }
-        callback.run(result);
+        return result;
     }
 
-    public void eof(long rid, ILongCallback callback){
+    public long eof(long rid, ILongCallback callback){
         long result = 1;
         if (permissions.containsKey((rid))) {
             Permission permission = permissions.get(rid);
             result = fileManager.eof(permission.getFilename());
         }
-        callback.run(result);
+        return result;
     }
 
-    public
+    public long remove(long rid) {
+        long result = 1;
+        if (permissions.containsKey((rid))) {
+            Permission permission = permissions.get(rid);
+            result = fileManager.remove(permission.getFilename());
+        }
+        return result;
+    }
 
     private synchronized long createPermission(String filename, String mode) {
         long rid = System.currentTimeMillis();
-        Permission permission = new Permission(filename, mode);
+        Permission permission = new Permission(filename, mode,0);
         permissions.put(rid, permission);
         return rid;
     }

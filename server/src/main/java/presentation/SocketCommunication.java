@@ -58,38 +58,33 @@ public class SocketCommunication {
 
             switch (m.get("operation")) {
                 case OPEN:
-                    manager.open(
+                    Long num = manager.open(
                             m.get("filename"),
-                            m.get("mode"), num -> {
-                                HashMap<String, String> response = new HashMap<>();
-                                response.put("rid", String.valueOf(num));
-                                try {
-                                    System.out.println("rid: " + num);
-                                    writer.write(gson.toJson(response) + "\n");
-                                    writer.flush();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-
-
-                            });
+                            m.get("mode"));
+                    HashMap<String, String> response = new HashMap<>();
+                    response.put("rid", String.valueOf(num));
+                    try {
+                        System.out.println("rid: " + num);
+                        writer.write(gson.toJson(response) + "\n");
+                        writer.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case READ:
-                    manager.read(
+                    String text = manager.read(
                             Long.valueOf(m.get("rid")),
-                            Integer.valueOf(m.get("count")),
-                            text -> {
-                                HashMap<String, String> response = new HashMap<>();
-                                response.put("text", String.valueOf(text));
-                                try {
-                                    System.out.println("response: " + response);
-                                    writer.write(gson.toJson(response) + "\n");
-                                    writer.flush();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            }
+                            Integer.valueOf(m.get("count"))
                     );
+                    HashMap<String, String> r = new HashMap<>();
+                    r.put("text", String.valueOf(text));
+                    try {
+                        System.out.println("response: " + r);
+                        writer.write(gson.toJson(r) + "\n");
+                        writer.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     break;
                 case EOF:
 
