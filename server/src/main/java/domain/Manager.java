@@ -62,8 +62,6 @@ public class Manager {
         callback.run(result);
     }
 
-    public
-
     private synchronized long createPermission(String filename, String mode) {
         long rid = System.currentTimeMillis();
         Permission permission = new Permission(filename, mode);
