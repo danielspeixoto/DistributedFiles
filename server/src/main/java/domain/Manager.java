@@ -53,6 +53,15 @@ public class Manager {
         callback.run(result);
     }
 
+    public void eof(long rid, ILongCallback callback){
+        long result = 1;
+        if (permissions.containsKey((rid))) {
+            Permission permission = permissions.get(rid);
+            result = fileManager.eof(permission.getFilename());
+        }
+        callback.run(result);
+    }
+
     private synchronized long createPermission(String filename, String mode) {
         long rid = System.currentTimeMillis();
         Permission permission = new Permission(filename, mode);

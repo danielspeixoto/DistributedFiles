@@ -44,7 +44,7 @@ public class SocketCom implements ICommunication {
         if (response.containsKey("rid")) {
             return Long.valueOf(response.get("rid"));
         }
-        return 0;
+        return 1;
     }
 
     @Override
@@ -61,7 +61,73 @@ public class SocketCom implements ICommunication {
             }
             return text.length();
         }
-        return 0;
+        return 1;
+    }
+
+    @Override
+    public long reof(long rid) {
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "reof");
+        map.put("rid", String.valueOf(rid));
+        Map<String, String> result = request(map);
+        if (result.containsKey("final")){
+            return Long.valueOf(result.get("final"));
+        }
+        return 1;
+    }
+
+    @Override
+    public long rclose(long rid) {
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "rclose");
+        map.put("rid", String.valueOf(rid));
+        Map<String, String> result = request(map);
+        if (result.containsKey("close")){
+            return Long.valueOf(result.get("close"));
+        }
+        return 1;
+    }
+
+    public long rremove(String filename) {
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "rremove");
+        map.put("filename", filename);
+        Map<String, String> result = request(map);
+        if (result.containsKey("del")){
+            return Long.valueOf(result.get("del"));
+        }
+        return 1;
+    }
+
+    @Override
+    public long rgetpos(long rid, int pos){
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "rgetpos");
+        map.put("rid", String.valueOf(rid));
+        map.put("pos", String.valueOf(pos));
+        Map<String, String> result = request(map);
+        if (result.containsKey("gpos")) {
+            return Long.valueOf(result.get("gpos"));
+        }
+        return 1;
+    }
+
+    @Override
+    public long rseek(long rid, int offset, String origin) {
+        Map<String, String> map = new HashMap<>();
+        map.put("operation", "rseek");
+        map.put("rid", String.valueOf(rid));
+        map.put("offset", String.valueOf(offset));
+        map.put("origin", origin);
+        Map<String, String> result = request(map);
+        if (result.containsKey("spos")) {
+            return Long.valueOf(result.get("spos"));
+        }
+        return 1;
+    }
+
+    public long rwrite(StringBuffer buffer, int sizeBuf, int count, long rid) {
+        return 1;
     }
 
     private Map<String, String> request(Map<String, String> params) {
@@ -82,4 +148,6 @@ public class SocketCom implements ICommunication {
         }
         return empty;
     }
+
+
 }
