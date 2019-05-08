@@ -4,15 +4,19 @@ import java.io.*;
 
 public class FileManager {
 
-    public static void main(){
+    public static void main(String[] args){
         System.out.println("Test");
+        FileManager fman = new FileManager();
+        //System.out.println(fman.read("/home/felipe/Área de Trabalho/test.txt", 0));
+        System.out.println(fman.remove("/home/felipe/Área de Trabalho/test.txt"));
     }
 
     public String read(String filename, int count) {
         InputStream f = null;
+        int content = 0;
         try{
             f = new FileInputStream(filename);
-            char content = (char) f.read();
+            content = f.read();
         }catch (FileNotFoundException e) {
             e.printStackTrace();
         }catch (IOException e) {
@@ -21,7 +25,7 @@ public class FileManager {
 
         }
 
-        return "asdf";
+        return String.valueOf(content);
     }
 
     public int eof(String filename) {
@@ -47,7 +51,12 @@ public class FileManager {
         return 1;
     }
 
-    public int remove(int rid){
-        return 1;
+    public int remove(String filename){
+        File file = new File(filename);
+        if (file.delete()){
+            return 0;
+        }else{
+            return 1;
+        }
     }
 }
