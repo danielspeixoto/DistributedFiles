@@ -4,6 +4,8 @@ import data.FileManager;
 
 import java.util.*;
 
+//Classe lógica para lidar com as requisicoes
+//e criar permissoes de acesso a um arquivo e manutencao de quais estao aberto
 public class Manager {
 
     private FileManager fileManager;
@@ -28,6 +30,7 @@ public class Manager {
     public synchronized Long open(String filename, String mode) {
         long result = 0;
         if(filename != null && mode != null) {
+            System.out.println("mode " + mode);
             ArrayList<Permission> usages = filenameUsage(filename);
             if (!MODES.contains(mode)) {
                 // Invalid mode
@@ -109,6 +112,7 @@ public class Manager {
         if(permissions.containsKey(rid)){
             Permission permission = permissions.get(rid);
             result = fileManager.getpos(permission.getPosition());
+            result = 1;
         }
         return result;
     }

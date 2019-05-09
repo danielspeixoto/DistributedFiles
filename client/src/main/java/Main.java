@@ -2,6 +2,7 @@ import data.SocketCom;
 import domain.Manager;
 import presentation.Terminal;
 
+//classe inicializadora do cliente
 public class Main {
 
     public static void main(String[] args) {

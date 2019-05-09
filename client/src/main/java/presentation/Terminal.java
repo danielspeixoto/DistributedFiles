@@ -5,6 +5,7 @@ import domain.Manager;
 import javax.sound.midi.SysexMessage;
 import java.util.Scanner;
 
+//classe responsavel para lidar com as interacoes IO com o terminal de comando
 public class Terminal {
 
     private static final String OPEN = "ropen";
@@ -22,41 +23,46 @@ public class Terminal {
         this.manager = manager;
     }
 
+    //funcao para interpretar a entrada e repassar para a camada lógica o que foi requisitado
     public void start() {
         Scanner scanner = new Scanner(System.in);
         long lastRid = 0;
         while(true) {
+            /*
+            param[0] é a funcao desejada e os proximos comandos
+            sao as entradas padroes definidas para cada funcao
+             */
             String input = scanner.nextLine();
             String[] params = input.split(" ");
             String operation = params[0];
-            System.out.println("param " + params[0]);
+            System.out.println(params[0] + "\n" + params[1]);
             switch (operation) {
                 case OPEN:
-                    lastRid = manager.open(params[1], params[2]);
+                    lastRid = manager.ropen(params[1], params[2]);
                     System.out.println(lastRid);
                     break;
                 case READ:
-                    System.out.println(manager.read(Long.valueOf(params[1])));
+                    System.out.println(manager.rread(Long.valueOf(params[1])));
                     break;
                 case WRITE:
-
+                    StringBuffer wBuffer = new StringBuffer(params[1]);
+                    System.out.println(manager.rwrite(wBuffer, Integer.valueOf(params[2]), Integer.valueOf(params[3]), Long.valueOf(params[4])));
                     break;
                 case EOF:
-
+                    System.out.println(manager.reof(Long.valueOf(params[1])));
                     break;
                 case SEEK:
-
+                    System.out.println(manager.rseek(Long.valueOf(params[1]), Integer.valueOf(params[2]), params[3]));
                     break;
                 case CLOSE:
-
+                    System.out.println(manager.rclose(Long.valueOf(params[1])));
                     break;
                 case GETPOS:
-
+                    System.out.println(manager.rgetpos(Long.valueOf(params[1]), Integer.valueOf(params[2])));
                     break;
                 case REMOVE:
-
+                    System.out.println(manager.rremove(Long.valueOf(params[1])));
                     break;
-
                 default:
                     break;
             }

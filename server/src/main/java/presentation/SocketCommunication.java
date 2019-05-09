@@ -8,6 +8,7 @@ import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
 
+//classe para lidar com a comunicacao via Socket com os clientes
 public class SocketCommunication {
 
     private static final String OPEN = "ropen";
@@ -26,6 +27,7 @@ public class SocketCommunication {
         this.manager = manager;
     }
 
+    //funcao para criar Thread para atender multiplos clientes
     public void answer() {
 
         try {
@@ -40,6 +42,8 @@ public class SocketCommunication {
 
     }
 
+    //funcao para lidar com uma entrada
+    //descontroi a mensagem passagem em JSON
     public void process(Socket client) {
         try {
             BufferedReader scanner = new BufferedReader(
@@ -76,6 +80,7 @@ public class SocketCommunication {
                     response.put("final", String.valueOf(num));
                     break;
                 case WRITE:
+                    System.out.println("entrei aqui " + m.get("buffer"));
                     num = manager.write(Long.valueOf(m.get("rid")), m.get("buffer"));
                     response.put("total", String.valueOf(num));
                     break;
@@ -84,13 +89,16 @@ public class SocketCommunication {
                     response.put("getpos", String.valueOf(num));
                     break;
                 case SEEK:
-
+                    num = manager.seek(Long.valueOf(m.get("rid")), Long.valueOf(m.get("offset")), m.get("origin"));
+                    response.put("spos", String.valueOf(num));
                     break;
                 case CLOSE:
-
+                    num = manager.close(Long.valueOf(m.get("rid")));
+                    response.put("close", String.valueOf(num));
                     break;
                 case REMOVE:
-
+                    num = manager.remove(Long.valueOf(m.get("rid")));
+                    response.put("del", String.valueOf(num));
                     break;
                 default:
                     break;
@@ -101,6 +109,7 @@ public class SocketCommunication {
         }
     }
 
+    //funcao para envio da resposta
     public void response(HashMap<String, String> map, BufferedWriter writer){
         try {
             System.out.println("response: " + map);

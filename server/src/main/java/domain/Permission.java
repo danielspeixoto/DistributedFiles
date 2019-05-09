@@ -1,5 +1,6 @@
 package domain;
 
+//classe que armazena qual arquivo está ligado a um cliente
 public class Permission {
 
     private String filename;

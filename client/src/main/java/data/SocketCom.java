@@ -13,6 +13,10 @@ import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.Map;
 
+/*
+classe responsavel pela implementacao da comunicacao via Socket
+estrutura das mensagens: JSON
+ */
 public class SocketCom implements ICommunication {
 
     private Socket socket;
@@ -88,10 +92,10 @@ public class SocketCom implements ICommunication {
         return 1;
     }
 
-    public long rremove(String filename) {
+    public long rremove(Long rid) {
         Map<String, String> map = new HashMap<>();
         map.put("operation", "rremove");
-        map.put("filename", filename);
+        map.put("filename", String.valueOf(rid));
         Map<String, String> result = request(map);
         if (result.containsKey("del")){
             return Long.valueOf(result.get("del"));

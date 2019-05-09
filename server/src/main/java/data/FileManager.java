@@ -6,8 +6,12 @@ import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.Scanner; // Import the Scanner class to read text files
 
+//classe da camada de dados
+//responsavel por fazer a interacao com um arquivo
 public class FileManager {
 
+    //caminho absoluto para o arquivo
+    // Modificar o PATH para o computador que executara o servidor
     private static final String PATH = "C:\\Users\\Silva\\Documents\\UFBA\\Sistemas Distribuidos\\DistributedFiles\\server\\src\\main\\java\\res\\";
 
     private String fileToString(String filename) {
@@ -66,10 +70,12 @@ public class FileManager {
         int result=0;
         String file = PATH + filename;
         boolean append = mode.contains("a");
-
+        System.out.println("buffer " + buffer);
         try {
            FileWriter fWriter = new FileWriter(file, append);
            fWriter.write(buffer);
+           fWriter.close();
+           System.out.println("escrevi");
         } catch (Exception e){
            result=0;
         }
