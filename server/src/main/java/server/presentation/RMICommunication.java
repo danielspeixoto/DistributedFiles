@@ -1,17 +1,18 @@
 package server.presentation;
 
 import java.rmi.RemoteException;
-import java.util.HashMap;
+import java.util.Map;
 
 public class RMICommunication implements IRMIObject {
 
-    public RMICommunication() { }
+    private RequestManager processManager;
+
+    public RMICommunication(RequestManager manager) {
+        this.processManager = manager;
+    }
 
     @Override
-    public HashMap<String, String> get() throws RemoteException {
-        HashMap<String, String> h = new HashMap<>();
-        h.put("hello", "world");
-        System.out.println("invoked");
-        return h;
+    public Map<String, String> request(Map<String, String> req) throws RemoteException {
+        return this.processManager.process(req);
     }
 }
