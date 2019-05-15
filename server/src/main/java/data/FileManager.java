@@ -1,62 +1,120 @@
 package data;
 
-import java.io.*;
+import java.io.File;  // Import the File class
+import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.io.FileWriter;
+import java.nio.file.Path;
+import java.util.Scanner; // Import the Scanner class to read text files
 
+//classe da camada de dados
+//responsavel por fazer a interacao com um arquivo
 public class FileManager {
 
-    public static void main(String[] args){
-        System.out.println("Test");
-        FileManager fman = new FileManager();
-        //System.out.println(fman.read("/home/felipe/Área de Trabalho/test.txt", 0));
-        System.out.println(fman.remove("/home/felipe/Área de Trabalho/test.txt"));
-    }
+    //caminho absoluto para o arquivo
+    // Modificar o PATH para o computador que executara o servidor
+    private static final String PATH = "C:\\Users\\Silva\\Documents\\UFBA\\Sistemas Distribuidos\\DistributedFiles\\server\\src\\main\\java\\res\\";
 
-    public String read(String filename, int count) {
-        InputStream f = null;
-        int content = 0;
-        try{
-            f = new FileInputStream(filename);
-            content = f.read();
-        }catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-
-        }
-
-        return String.valueOf(content);
-    }
-
-    public int eof(String filename) {
-        int r = 1;
+    private String fileToString(String filename) {
+        String acum = "";
         try {
-
-        } catch (Exception e) {
-
+            File f = new File(filename);
+            Scanner reader = new Scanner(f);
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                acum += data + "\n";
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        return r;
+        return acum;
     }
 
-    public int write(int rid){
-
-        return 1;
+    private long fileSize(String filename) {
+        long acum = -1;
+        try {
+            File f = new File(filename);
+            acum = f.length();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return acum;
     }
 
-    public int seek(int rid){
-        return 1;
+    private boolean fileExists(String filename) {
+        try {
+            File f = new File(filename);
+            return f.exists();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
-    public int getpos(int rid){
-        return 1;
+    public String read(String filename, long start, long count) {
+        String fPath = PATH + filename;
+        String acum="";
+        if(fileExists(fPath)) {
+            String data = fileToString(PATH + filename);
+            acum = data.substring((int) start, Math.min((int) (start + count), data.length()));
+        }
+        return acum;
+    }
+
+    public boolean eof(String filename, long position) {
+        String data = fileToString(PATH + filename);
+        return data.length() == (int)position;
+    }
+
+    public int write(String buffer, String filename, String mode, long position){
+        int result=0;
+        String file = PATH + filename;
+        boolean append = mode.contains("a");
+        System.out.println("buffer " + buffer);
+        try {
+            FileWriter fWriter = new FileWriter(file, append);
+            fWriter.write(buffer);
+            fWriter.close();
+            System.out.println("escrevi");
+        } catch (Exception e){
+            result=0;
+        }
+
+        return result;
+    }
+
+    public long seek(String filename, long position, long offset, String origin) {
+        long fileSize = fileSize(PATH + filename);
+        switch(origin) {
+            case "SEEK_SET":
+                if(offset <= fileSize) {
+                    return offset;
+                }
+                return -1;
+            case "SEEK_CUR":
+                if(position + offset <= fileSize) {
+                    return position + offset;
+                }
+                return -1;
+            case "SEEK_END":
+                if(fileSize + offset <= fileSize) {
+                    return position + offset;
+                }
+                return -1;
+        }
+        return position;
+    }
+
+    public long getpos(long position){
+        return position;
     }
 
     public int remove(String filename){
-        File file = new File(filename);
-        if (file.delete()){
+        String f = PATH + filename;
+        File deleteFile = new File(f);
+        if(deleteFile.delete()){
             return 0;
-        }else{
-            return 1;
         }
+        return 1;
     }
 }

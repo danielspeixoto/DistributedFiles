@@ -1,8 +1,10 @@
-package domain;
+package presentation;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 import java.util.HashMap;
 
-public interface IRMIObject {
+public interface IRMIObject extends Remote {
 
-    public HashMap<String, String> get();
+    HashMap<String, String> get() throws RemoteException;
 }
