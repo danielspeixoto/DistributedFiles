@@ -34,7 +34,6 @@ public class Terminal {
             String input = scanner.nextLine();
             String[] params = input.split(" ");
             String operation = params[0];
-            System.out.println(params[0] + "\n" + params[1]);
             switch (operation) {
                 case OPEN:
                     lastRid = manager.ropen(params[1], params[2]);

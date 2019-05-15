@@ -18,9 +18,9 @@ public class SocketCommunication {
 
     //funcao para criar Thread para atender multiplos clientes
     public void answer() {
-
         try {
-            ServerSocket server = new ServerSocket(3001);
+            ServerSocket server = new ServerSocket(3333);
+            System.out.println("socket ready");
             while (true) {
                 Socket s = server.accept();
                 new Thread(() -> process(s)).run();
@@ -46,8 +46,7 @@ public class SocketCommunication {
             String input = scanner.readLine();
             System.out.println(input);
 
-            Map<String, String> m =
-                    (Map<String, String>) gson.fromJson(input, Map.class);
+            Map<String, String> m = (Map<String, String>) gson.fromJson(input, Map.class);
             response(this.processManager.process(m), writer);
         } catch (Exception e) {
             e.printStackTrace();

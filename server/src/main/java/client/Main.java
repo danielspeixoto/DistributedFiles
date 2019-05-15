@@ -2,6 +2,7 @@ package client;
 
 import client.data.Operation;
 import client.data.RMICom;
+import client.data.SocketCom;
 import client.domain.ClientManager;
 import client.presentation.Terminal;
 import server.domain.Manager;
@@ -15,9 +16,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Starting client...");
 //        new Terminal(
-//                new ClientManager()(
+//                new ClientManager(
 //                        new Operation(
-//                                new SocketCom("127.0.0.1", 3001)
+//                                new SocketCom("127.0.0.1", 3333)
 //                        )
 //                )
 //        ).start();

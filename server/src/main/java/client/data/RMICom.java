@@ -16,7 +16,7 @@ public class RMICom implements ICommunication {
     private Registry registry;
 
     public RMICom(String host, int port) throws RemoteException {
-        registry = LocateRegistry.getRegistry(host, port);
+        registry = LocateRegistry.getRegistry("127.0.0.1", port);
         if (System.getSecurityManager() == null) {
             System.setSecurityManager(new Security(System.getSecurityManager()));
         }

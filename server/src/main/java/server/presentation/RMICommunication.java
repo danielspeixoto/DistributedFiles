@@ -8,6 +8,7 @@ public class RMICommunication implements IRMIObject {
     private RequestManager processManager;
 
     public RMICommunication(RequestManager manager) {
+
         this.processManager = manager;
     }
 
