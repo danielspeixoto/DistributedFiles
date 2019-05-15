@@ -1,1 +1,0 @@
-./gradlew build && ./gradlew shadowJar && java -jar build/libs/client-1.0-all.jar

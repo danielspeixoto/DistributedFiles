@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="all.main" target="1.8" />
+      <module name="all.test" target="1.8" />
+      <module name="client.main" target="1.8" />
+      <module name="client.test" target="1.8" />
+      <module name="distribuidos.client.main" target="1.8" />
+      <module name="distribuidos.client.test" target="1.8" />
+      <module name="distribuidos.server.main" target="1.8" />
+      <module name="distribuidos.server.test" target="1.8" />
+      <module name="IdeaProjects.distribuidos.server.main" target="1.8" />
+      <module name="IdeaProjects.distribuidos.server.test" target="1.8" />
+      <module name="server.main" target="1.8" />
+      <module name="server.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

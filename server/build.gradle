@@ -12,7 +12,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'com.github.johnrengelman.shadow'
 
-group 'distribuidos'
 version '1.0'
 
 sourceCompatibility = 1.8
@@ -26,9 +25,23 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+    }
+}
+
 
 jar {
     manifest {
-        attributes 'Main-Class': 'Main'
+        attributes 'Main-Class': 'client.Main'
     }
 }
